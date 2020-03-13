@@ -25,10 +25,7 @@
 <script>
 
 export default {
-  name: 'ProductForm',
-  props: {
-      produtos: []
-  },
+
 data() {
     return {
       descricao: "",
