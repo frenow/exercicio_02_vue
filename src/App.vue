@@ -1,64 +1,29 @@
 <template>
-  <div>
-    <form @submit="onFormSubmit">
-      <p>
-        <label>First name:</label>
-        <input type="text" v-model="firstName">
-        {{firstNameError}}
-      </p>
-      <p>
-        <label>Last name:</label>
-        <input type="text" v-model="lastName">
-      </p>
-      <p>
-        <label>E-mail:</label>
-        <input type="text" v-model="email">
-      </p>
-      <button type="submit">Send</button>
-    </form>
-    <p>{{firstName}} {{lastName}} | {{email}}</p>
-
-    <div>
-      <ul>
-        <li v-for="user in users" :key="user.name">{{user.name}}</li>
-      </ul>
-    </div>
+  <div>  
+    <ProductForm />
+    <ProductItem descricao = descricao quantidade = quantidade valor = valor />
+    <ProductsList produtos = produtos/>    
   </div>
 </template>
 
 <script>
+import ProductItem from './components/ProductItem.vue'
+import ProductsList from './components/ProductsList.vue'
+import ProductForm from './components/ProductForm.vue'
+
 export default {
   data() {
     return {
-      firstName: "",
-      lastName: "",
-      email: "",
-      firstNameError: "",
-      users: []
+      isNameLimitExceeded: false,
+      descricaoError: "",
+      produtos: [
+        {
+          descricao: "",
+          quantidade: 0,
+          valor: 0,
+        }
+      ]
     };
-  },
-  watch: {
-    firstName() {
-      if (this.firstName.length <= 5) {
-        this.firstNameError = "Nome precisa conter mais do que 5 caracteres";
-      } else {
-        this.firstNameError = "";
-      }
-    }
-  },
-  methods: {
-    onFormSubmit(e) {
-      e.preventDefault();
-
-      if (this.firstNameError !== "") {
-        return;
-      }
-
-      this.users = this.users.concat({
-        name: `${this.firstName}  ${this.lastName}`,
-        email: this.email
-      });
-    }
   }
 };
 </script>
