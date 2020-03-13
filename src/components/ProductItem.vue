@@ -1,15 +1,13 @@
 <template>
-  <p>{{descricao}} | {{quantidade}} | {{valor}}</p>
+  <p>{{produto.descricao}} | {{produto.quantidade}} | {{produto.valor}}</p>
 </template>
 
 <script>
 export default {
-  name: 'produto',
-  props: {
-    descricao: String,
-    quantidade: String,
-    valor: String,
-  }
+    name: 'ProductList',
+    props: {
+        produto: Object
+    },
 }
 </script>
 

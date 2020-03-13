@@ -1,30 +1,49 @@
 <template>
   <div>  
-    <ProductForm />
-    <ProductItem descricao = descricao quantidade = quantidade valor = valor />
-    <ProductsList produtos = produtos/>    
+    <ProductForm :addProduto="addProduto" />
+    <ProductsList :produtos="produtos" />
   </div>
 </template>
 
 <script>
-import ProductItem from './components/ProductItem.vue'
-import ProductsList from './components/ProductsList.vue'
 import ProductForm from './components/ProductForm.vue'
+import ProductsList from './components/ProductsList.vue'
 
 export default {
   data() {
     return {
-      isNameLimitExceeded: false,
-      descricaoError: "",
       produtos: [
         {
-          descricao: "",
-          quantidade: 0,
-          valor: 0,
-        }
+          descricao: "Video Game PS4",
+          quantidade: 1,
+          valor: 2000,
+        },
+        {
+          descricao: "Video Game Xbox One",
+          quantidade: 1,
+          valor: 1500,
+        },
+        {
+          descricao: "Video Game Nintendo Switch",
+          quantidade: 1,
+          valor: 2500,
+        },
       ]
     };
-  }
+  },
+  components: {
+    ProductsList,
+    ProductForm
+  }, 
+  methods: {
+    addProduto(produto){
+      this.produtos = this.produtos.concat({
+        descricao: produto.descricao,
+        quantidade: produto.quantidade,
+        valor: produto.valor
+      })
+    }
+  }  
 };
 </script>
 

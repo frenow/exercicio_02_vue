@@ -32,10 +32,12 @@ data() {
       quantidade: 0,
       valor: 0.00,
       isNameLimitExceeded: false,
-      descricaoError: "",
-      produtos: []
+      descricaoError: ""
     };
   },
+  props: {
+      addProduto: Function
+  },  
   watch: {
     descricao() {
       if (this.descricao.length > 15) {
@@ -55,7 +57,7 @@ data() {
         return;
       }
 
-      this.produtos = this.produtos.concat({
+      this.addProduto({
         descricao: this.descricao,
         quantidade: this.quantidade,
         valor: this.valor

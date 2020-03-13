@@ -1,17 +1,30 @@
 <template>
     <div>
       <ul>
-        <li v-for="produto in produtos" :key="produto.descricao">{{produto.descricao}} | {{produto.quantidade}} | {{produto.valor}}</li>
+        <li v-for="produto in produtos" :key="produto.descricao">
+          <ProductItem :produto="produto" /> 
+        </li>
       </ul>
+      Total: {{qtdTotal}}        
     </div>  
+    
 </template>
 
 <script>
+import ProductItem from './ProductItem'
 export default {
-  name: 'ProdutcsList',
-  props: {
-      produtos: []
-  }
+    name: 'ProductList',
+    props: {
+        produtos: Array
+    },
+    components: {
+        ProductItem
+    },
+    computed: {
+        qtdTotal(){
+            return this.produtos.length;
+        }
+    }
 }
 </script>
 
